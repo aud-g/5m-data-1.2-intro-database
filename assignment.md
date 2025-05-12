@@ -21,6 +21,27 @@ Each entity has the following attributes:
 Answer:
 
 ```dbml
+Table User {
+  id int [pk, increment]
+  username varchar
+  email varchar
+  created_at timestamp
+}
+
+Table Post {
+  id int [pk, increment]
+  title varchar
+  body text
+  user_id int [ref: > User.id]
+  status varchar
+  created_at timestamp
+}
+
+Table Follows {
+  following_user_id int [ref: > User.id, pk]
+  followed_user_id int [ref: > User.id, pk]
+  created_at timestamp
+}
 
 ```
 
@@ -38,7 +59,32 @@ There are 4 entities, think of what attributes each entity should have.
 Answer:
 
 ```dbml
+Table Customer {
+  id int [pk, increment]
+  name varchar
+  email varchar
+  address varchar
+}
 
+Table Book {
+  id int [pk, increment]
+  title varchar
+  author varchar
+  price decimal
+  isbn varchar
+}
+
+Table Cart {
+  id int [pk, increment]
+  customer_id int [ref: > Customer.id]
+  created_at datetime
+}
+
+Table CartItem {
+  cart_id int [ref: > Cart.id, pk]
+  book_id int [ref: > Book.id, pk]
+  quantity int
+}
 ```
 
 ## Submission
